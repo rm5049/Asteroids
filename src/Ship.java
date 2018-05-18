@@ -2,47 +2,55 @@ import java.awt.List;
 import java.util.ArrayList;
 
 public class Ship {
-	private int length;
+	private double positionX, positionY; // where the car is
+	private double velocityX, velocityY; // speed on each axis
+	private double drag; // how fast the car slows down
+	private double angle; // the rotation of the car, in radians
+	private double angularVelocity; //speed the car is spinning, in radians
+	private double power; //how fast car can accelerate
+	private double turnSpeed; //how fast to turn
+	private double angularDrag=0; //how fast the car stops spinning
 	private String direct;
-	private int x;
-	private int y;
-	
-	ArrayList<Integer> LocationsX = new ArrayList<Integer>();
-	ArrayList<Integer> LocationsY = new ArrayList<Integer>();
-	ArrayList<Integer> LocationsXCopy;
-	ArrayList<Integer> LocationsYCopy;
-	
-	//LocationsX.add(10);
-	//LocationsY.add(10);
-
 	private static int WIDTH = 20;
 	private static int LENGTH = 20;
 	
-	public Ship(int l) {
-		length = l;
-		//x = (int) (Math.random() * 20);
-		//y = (int) (Math.random() * 20);
-		x = 10;
-		y = 10;
+	public Ship() {
+		positionX = 10;
+		positionY = 10;
 		this.setDirection("left");
-		LocationsX.add(x);
-		LocationsY.add(y);
+
 
 	}
+	public boolean turnLeft() {
+		angularVelocity -= turnSpeed;
+		return true;
+	}
+	public boolean turnRight() {
+		angularVelocity -= turnSpeed;
+		return true;
+	}
+	public void update() {
+		positionX += velocityX;
+		positionY += velocityY;
+		velocityX *= drag;
+		velocityY *= drag;
+		angle += angularVelocity;
+		angularVelocity *= angularDrag;
+	}
 	
+	public boolean accelerate() {
+		velocityX += Math.sin(angle) * power;
+		velocityY += Math.cos(angle) * power;
+		return true;
+	}
 
-	
 	public void move(String direction) {
-		LocationsX.add(0,x);
-		LocationsY.add(0,y);
-		
-		System.out.println("[" + LocationsX.get(0) + "," + LocationsY.get(0) + "]");
 		
 		direct = direction;
 		
 		if(direct.compareTo("left") == 0) {
-				if(x-1 >= 0) {
-					x--;
+				if(positionX-1 >= 0) {
+					positionX--;
 					//System.out.println(x);
 				}
 				else {
@@ -51,8 +59,8 @@ public class Ship {
 				
 		}
 		else if(direct.compareTo("right") == 0) {
-			if(x+1 <= WIDTH) {
-				x++;
+			if(positionX+1 <= WIDTH) {
+				positionX++;
 				//System.out.println(x);
 			}
 			else {
@@ -60,8 +68,8 @@ public class Ship {
 			}
 		}
 		else if(direct.compareTo("up") == 0) {
-			if(y+1 <= LENGTH) {
-				y++;
+			if(positionY+1 <= LENGTH) {
+				positionY++;
 				//System.out.println(x);
 			}
 			else {
@@ -69,8 +77,8 @@ public class Ship {
 			}
 		}
 		else if(direct.compareTo("down") == 0) {
-			if(y-1 >= 0) {
-				y--;
+			if(positionY-1 >= 0) {
+				positionY--;
 				//System.out.println(x);
 			}
 			else {
@@ -86,18 +94,18 @@ public class Ship {
 		direct = directi;
 	}
 	
-	public ArrayList<Integer> getLocationsX() {		
-		LocationsXCopy= new ArrayList<Integer> (LocationsX.subList(0, length));
-		return LocationsXCopy;
-	}
-	public ArrayList<Integer> getLocationsY() {		
-		LocationsYCopy = new ArrayList<Integer> (LocationsY.subList(0, length));
-		return LocationsYCopy;
-	}
-	
-	public boolean eatDot() {
-		length++;
-		return true;
-	}
+//	public ArrayList<Integer> getLocationsX() {		
+//		LocationsXCopy= new ArrayList<Integer> (LocationsX.subList(0, length));
+//		return LocationsXCopy;
+//	}
+//	public ArrayList<Integer> getLocationsY() {		
+//		LocationsYCopy = new ArrayList<Integer> (LocationsY.subList(0, length));
+//		return LocationsYCopy;
+//	}
+//	
+//	public boolean eatDot() {
+//		length++;
+//		return true;
+//	}
 	
 }
