@@ -13,7 +13,7 @@ import javax.swing.UIManager;
 public class AsteroidsPanel extends JPanel {
 
 
-	Ship s = new Ship(1);
+	Ship s = new Ship();
 	private AsteroidBoard board;
 	
 	Timer timer = new Timer(1,null);
