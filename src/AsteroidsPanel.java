@@ -13,10 +13,10 @@ import javax.swing.UIManager;
 public class AsteroidsPanel extends JPanel {
 
 
-	Snake s = new Snake(1);
-	private Board board;
+	Ship s = new Ship(1);
+	private AsteroidBoard board;
 	
-	Timer timer = new Timer(500,null);
+	Timer timer = new Timer(1,null);
 	public static void main(String[] args) {
 		try {
 			// Set System L&F
@@ -26,12 +26,12 @@ public class AsteroidsPanel extends JPanel {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		JFrame frame = new JFrame("Snake!");
+		JFrame frame = new JFrame("Asteroids!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		AsteroidsPanel sp = new AsteroidsPanel();
 		frame.add(sp);
-		sp.setPreferredSize(new Dimension(800,600));
+		sp.setPreferredSize(new Dimension(800,800));
 		frame.pack();
 		frame.setVisible(true);
 		sp.setUpKeyMappings();
@@ -39,7 +39,7 @@ public class AsteroidsPanel extends JPanel {
 	}
 	
 	public AsteroidsPanel(){
-		board = new Board();
+		board = new AsteroidBoard();
 		this.setPreferredSize(new Dimension(800,800));
 		//board.placeDot();
 	}
@@ -120,9 +120,6 @@ public class AsteroidsPanel extends JPanel {
 	protected void tick() {
 		System.out.println("Timer went off!");
 		s.move(s.getDirection());
-		board.getSnakeLoc();
-		board.placeDot();
-		//s.move("left");
 	}
 	
 	@Override

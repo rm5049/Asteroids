@@ -7,36 +7,18 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 
-public class Board {
-	Snake snake = new Snake(1);
-	public int[][] board = new int[20][20];
-	int boardSize = 800;
-	public Board(){
-		getSnakeLoc();
-		placeDot();
-	}
-	public void getSnakeLoc(){
-		ArrayList<Integer> xLoc = snake.getLocationsX();
-		ArrayList<Integer> yLoc = snake.getLocationsY();
-		for(int r: yLoc) {
-			for (int c: xLoc) {
-				board[r][c] = 1;
-			}
-		}
+public class AsteroidBoard {
+	Ship ship1 = new Ship(1);
+	public int[][] board = new int[200][200];
+	int boardSize = board.length;
+	
+	
+	
+	public AsteroidBoard(){
+		
 	}
 	
-	public void placeDot(){
-		if(snake.eatDot()){
-			int randx = (int) (Math.random() * 20);
-			int randy = (int) (Math.random() * 20);
-			while(board[randx][randy] == 1){
-				randx = (int) (Math.random() * 20);
-				randy = (int) (Math.random() * 20);
-			}
-			board[randx][randy] = 2;
-		}
 
-	}
 
 
 	public void drawBoard(Graphics g){

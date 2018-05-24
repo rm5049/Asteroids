@@ -5,10 +5,9 @@ public class Ship {
 	private String direct;
 	private int x;
 	private int y;
-	
 
-	private static int WIDTH = 20;
-	private static int LENGTH = 20;
+	private static int WIDTH;;
+	private static int LENGTH;;
 	
 	public Ship(int l) {
 		x = 10;
