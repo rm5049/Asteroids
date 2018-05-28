@@ -13,9 +13,10 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
 	
 	Color ballCol = Color.YELLOW;
 	Color backCol = Color.BLACK;
+	Ship s = new Ship();
 	
     // the initial position of the ball in the canvas that will be determine randomly
-    int ballX, ballY;
+    double ballX = s.getPositionx(), ballY=s.getPositiony();
     // the delta we apply to the x and y position at each repaint
     // here it is set to 1... would should have a larger value in "real" life
     // but for testing purpose that will give you the fastest possible value for a 1 pixel update
@@ -86,8 +87,8 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
         graphics.setColor(backCol);
         graphics.fillRect(0, 0, size.width, size.height);
         // now we draw the ball
-        graphics.setColor(ballCol);
-        graphics.fillOval(ballX, ballY, BALLSIZE, BALLSIZE);
+        s.draw(graphics);
+    
         if(graphics != null)
             graphics.dispose();
         // show next buffer
@@ -102,6 +103,7 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
     int stop;
     	@Override
 	public void actionPerformed(ActionEvent e) {
+    		s.update();
 		this.myRepaint();
 	}
     	
