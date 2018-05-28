@@ -16,7 +16,8 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
 	Ship s = new Ship();
 	
     // the initial position of the ball in the canvas that will be determine randomly
-    double ballX = s.getPositionx(), ballY=s.getPositiony();
+    double ballX = s.getPositionx();
+    double ballY =  s.getPositiony();
     // the delta we apply to the x and y position at each repaint
     // here it is set to 1... would should have a larger value in "real" life
     // but for testing purpose that will give you the fastest possible value for a 1 pixel update
@@ -122,17 +123,17 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
     		
     		//forward
     		if (code == KeyEvent.VK_UP) {
-    			deltaY = Math.abs(deltaY);
+    			s.accelerate();
     		}
     		
     		//left
     		if (code == KeyEvent.VK_LEFT) {
-    			deltaX = Math.abs(deltaX) * -1;
+    			s.turnLeft();
     		}
     		
     		//right
     		if (code == KeyEvent.VK_B) {
-    			deltaX = Math.abs(deltaX);
+    			s.turnRight();
     		}
 
     		
