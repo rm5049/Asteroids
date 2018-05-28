@@ -22,6 +22,7 @@ public class GameFrame extends JFrame {
         canvas.createBufferStrategy(2);
     }
     // just to start the application
+
     public static void main(String[] args) {
         // instance of our stuff
         SwingUtilities.invokeLater(new Runnable() {
@@ -30,5 +31,5 @@ public class GameFrame extends JFrame {
             }
         });
     }
-}
+}    
 

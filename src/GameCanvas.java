@@ -118,6 +118,22 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
     			backCol = Color.WHITE;
     		}
     		
+    		//forward
+    		if (code == KeyEvent.VK_UP) {
+    			deltaY = Math.abs(deltaY);
+    		}
+    		
+    		//left
+    		if (code == KeyEvent.VK_LEFT) {
+    			deltaX = Math.abs(deltaX) * -1;
+    		}
+    		
+    		//right
+    		if (code == KeyEvent.VK_B) {
+    			deltaX = Math.abs(deltaX);
+    		}
+
+    		
 	}
 
     	
