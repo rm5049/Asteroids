@@ -15,10 +15,18 @@ public class Ship implements Drawable{
 	private String direct;
 	private static int WIDTH = 20;
 	private static int LENGTH = 20;
+	final double[] centerX={14,-10,-6,-10},centerY={0,-8,0,8},
+			 flamecenterX={-6,-23,-6},flamecenterY={-3,0,3};
+	final int radius=6;
+	int[] CoordsX, CoordsY, CoordsflameX, CoordsflameY;
 	
 	public Ship() {
-		positionX = 200;
+		positionX = 300;
 		positionY = 200;
+		CoordsX=new int[4]; // allocate space for the arrays
+		CoordsY=new int[4];
+		CoordsflameX=new int[3];
+		CoordsflameY=new int[3]; 
 	}
 	public boolean turnLeft() {
 		angularVelocity -= turnSpeed;
@@ -42,10 +50,36 @@ public class Ship implements Drawable{
 		velocityY += Math.cos(angle) * power;
 		return true;
 	}
+	public double getPositionx() {
+		return positionX;
+	}
+	public double getPositiony() {
+		return positionY;
+	}
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.drawRect((int)positionX, (int)positionY, 10, 10);
+			for(int x=0;x<4;x++){
+			 CoordsX[x]=(int)(centerX[x]*Math.cos(angle)- 
+			 centerY[x]*Math.sin(angle)+
+			 positionX+.5); 
+			 CoordsY[x]=(int)(centerX[x]*Math.sin(angle)+ 
+			 centerY[x]*Math.cos(angle)+
+			 positionY+.5); 
+			 }
+			if(accelerate()){ 
+				 for(int x=0;x<3;x++){
+				 CoordsflameX[x]=(int)(flamecenterX[x]*Math.cos(angle)-
+				 flamecenterY[x]*Math.sin(angle)+
+				 positionX+.5);
+				 CoordsflameY[x]=(int)(flamecenterX[x]*Math.sin(angle)+
+				 flamecenterY[x]*Math.cos(angle)+
+				 positionY+.5);
+				 }
+				 g.setColor(Color.red); 
+				 g.fillPolygon(CoordsflameX,CoordsflameY,3); 
+				 }
+			g.setColor(Color.white); 
+			g.fillPolygon(CoordsX,CoordsY,4); 
 	}
 
 
