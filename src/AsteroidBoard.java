@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 public class AsteroidBoard {
 	Ship ship1 = new Ship();
-	public int[][] board = new int[200][200];
+	public int[][] board = new int[800][800];
 	int boardSize = board.length;
 	
 	
