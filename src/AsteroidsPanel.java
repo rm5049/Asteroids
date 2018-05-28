@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,7 +15,8 @@ public class AsteroidsPanel extends JPanel {
 
 
 	Ship s = new Ship();
-	private AsteroidBoard board;
+	private AsteroidBoard asteroidboard;
+	private JPanel panel;
 	
 	Timer timer = new Timer(1,null);
 	public static void main(String[] args) {
@@ -39,7 +41,7 @@ public class AsteroidsPanel extends JPanel {
 	}
 	
 	public AsteroidsPanel(){
-		board = new AsteroidBoard();
+		asteroidboard = new AsteroidBoard();
 		this.setPreferredSize(new Dimension(800,800));
 		//board.placeDot();
 	}
@@ -52,11 +54,8 @@ public class AsteroidsPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				s.setDirection("left");
-
-				//s.move("left");
-				System.out.println("Hit left arrow!!");
-				//s.move("stop");
+				//System.out.println("Hit left arrow!!");
+				s.turnLeft();
 			}
 		});
 		this.requestFocusInWindow();
@@ -66,12 +65,9 @@ public class AsteroidsPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// what do you want to do when the left arrow is pressed?
-				s.setDirection("right");
-
-				//s.move("right");
-				System.out.println("Hit right arrow!!");
-				//s.move("stop");
+				// what do you want to do when the right arrow is pressed?
+				//System.out.println("Hit right arrow!!");
+				s.turnRight();
 			}
 		});
 		this.requestFocusInWindow();
@@ -81,11 +77,9 @@ public class AsteroidsPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// what do you want to do when the left arrow is pressed?
-				s.setDirection("up");
-				//s.move("up");
-				System.out.println("Hit up arrow!!");
-				//s.move("stop");
+				// what do you want to do when the up arrow is pressed?
+				//System.out.println("Hit up arrow!!");
+				s.accelerate();
 			}
 		});
 		this.requestFocusInWindow();
@@ -96,15 +90,12 @@ public class AsteroidsPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				s.setDirection("down");
-				//s.move("down");
-				System.out.println("Hit down arrow!!");
-				//s.move("stop");
 			}
 		});
 		this.requestFocusInWindow();
 		
 	}
+		
 	private void startGame() {
 		timer.addActionListener(new ActionListener() {
 
@@ -118,14 +109,16 @@ public class AsteroidsPanel extends JPanel {
 	}
 	
 	protected void tick() {
-		System.out.println("Timer went off!");
-		s.move(s.getDirection());
+		//System.out.println("Timer went off!");
+		s.update();
+		repaint();
 	}
 	
 	@Override
-	public void paintComponent(Graphics g){
+	public void paint(Graphics g){
 		super.paintComponent(g);
-		board.drawBoard(g);
+		asteroidboard.drawBoard(g);
+		s.draw(g);
 		repaint();
 	}
 	
