@@ -79,7 +79,7 @@ public class AsteroidsPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the up arrow is pressed?
 				//System.out.println("Hit up arrow!!");
-				s.accelerate();
+				
 			}
 		});
 		this.requestFocusInWindow();

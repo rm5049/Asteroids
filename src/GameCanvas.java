@@ -56,6 +56,7 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
         repaintInProgress = true;
         // get actual Canvas size so I can check if I am out of bounds
         Dimension size = getSize();
+        
         // test for all debordement possibilities on the X axis
         if(deltaX > 0) {
             if(ballX > size.width - BALLSIZE)
@@ -88,8 +89,9 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
         graphics.setColor(backCol);
         graphics.fillRect(0, 0, size.width, size.height);
         // now we draw the ball
+        s.update();
         s.draw(graphics);
-    
+        
         if(graphics != null)
             graphics.dispose();
         // show next buffer
@@ -104,10 +106,10 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
     int stop;
     	@Override
 	public void actionPerformed(ActionEvent e) {
-    		s.update();
-		this.myRepaint();
+    		
+		myRepaint();
 	}
-    	
+  
 
     	
     	@Override
@@ -123,17 +125,17 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
     		
     		//forward
     		if (code == KeyEvent.VK_UP) {
-    			s.accelerate();
+    			s.setAccel(true);
     		}
     		
     		//left
     		if (code == KeyEvent.VK_LEFT) {
-    			s.turnLeft();
+    			s.setLeft(true);
     		}
     		
     		//right
-    		if (code == KeyEvent.VK_B) {
-    			s.turnRight();
+    		if (code == KeyEvent.VK_RIGHT) {
+    			s.setRight(true);
     		}
 
     		
@@ -155,6 +157,19 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
 		}		
 		if (code == KeyEvent.VK_N) {
 			backCol = Color.BLACK;
+		}
+		if (code == KeyEvent.VK_UP) {
+			s.setAccel(false);
+		}
+		
+		//left
+		if (code == KeyEvent.VK_LEFT) {
+			s.setLeft(false);
+		}
+		
+		//right
+		if (code == KeyEvent.VK_RIGHT) {
+			s.setRight(false);
 		}
 	}
 
