@@ -12,10 +12,10 @@ import javax.swing.Timer;
 // OK this the class where we will draw
 public class GameCanvas extends Canvas implements ActionListener, KeyListener{
 	
-	Color ballCol = Color.YELLOW;
+	
 	Color backCol = Color.BLACK;
 	Ship s = new Ship();
-	
+	ArrayList<Asteroid> arrayList = new ArrayList<Asteroid>(); 
 	
 	
 
@@ -52,6 +52,8 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
         graphics.fillRect(0, 0, size.width, size.height);
         // now we draw the ball
 
+        s.Height = size.height;
+        s.Width = size.width;
         s.update();
         s.draw(graphics);
 
@@ -87,9 +89,6 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
     	public void keyPressed(KeyEvent e) {
     		int code = e.getKeyCode();
     		
-    		if (code == KeyEvent.VK_B) {
-    			ballCol = Color.MAGENTA;
-    		}
     		if (code == KeyEvent.VK_N) {
     			backCol = Color.WHITE;
     		}
@@ -126,9 +125,7 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int code = e.getKeyCode();
-		if (code == KeyEvent.VK_B) {
-			ballCol = Color.YELLOW;
-		}		
+		
 		if (code == KeyEvent.VK_N) {
 			backCol = Color.BLACK;
 		}

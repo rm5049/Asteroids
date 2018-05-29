@@ -16,8 +16,8 @@ public class Ship implements Drawable{
 	private double power = .7; 
 	private double turnSpeed = .05; 
 	private double angularDrag=0.75; 
-	private static int Height = 400;
-	private static int Width = 600;
+	public static int Height = 400;
+	public static int Width = 600;
 	private boolean accelerate;
 	private boolean Right;
 	private boolean Left;
