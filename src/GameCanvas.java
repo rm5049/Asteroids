@@ -11,12 +11,11 @@ import javax.swing.Timer;
  
 // OK this the class where we will draw
 public class GameCanvas extends Canvas implements ActionListener, KeyListener{
-	
-	
+	int level = 1;
+	int numAsteroids = 5;
 	Color backCol = Color.BLACK;
 	Ship s = new Ship();
-	ArrayList<Asteroid> arrayList = new ArrayList<Asteroid>(); 
-	
+	ArrayList<Asteroid> asteroidList = new ArrayList<Asteroid>();
 	
 
     // a flag if repaint in progress (needed if our computation are to long)
@@ -35,7 +34,16 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
         this.setFocusable(true);
         this.setFocusTraversalKeysEnabled(false);
     }
-     
+    public boolean newLevel() {
+	 	if(asteroidList.size()==0) {
+	 		level++;
+	 		if(level%5==0)
+	 			numAsteroids++;
+	 	return true;
+
+	 	}
+	 	return false;
+ }
 
     // my own paint method that repaint off line and switch the displayed buffer
     // according to the VBL
@@ -50,13 +58,21 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
         Graphics graphics = strategy.getDrawGraphics();
         graphics.setColor(backCol);
         graphics.fillRect(0, 0, size.width, size.height);
-        // now we draw the ball
 
         s.Height = size.height;
         s.Width = size.width;
         s.update();
         s.draw(graphics);
-
+        if(newLevel()) {
+        		for(int x=0; x<numAsteroids; x++) {
+        			asteroidList.add(new Asteroid("Large"));
+        	}
+        }
+        for(int x=0;x< asteroidList.size();x++) {
+        	asteroidList.get(x).update();
+        	asteroidList.get(x).draw(graphics);
+        }
+        
         for(Bullet b: s.bulletList) {
         	if (b.endDistance >= 0) {
         		b.move(size.width, size.height);
