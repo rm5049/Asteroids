@@ -1,5 +1,4 @@
-import java.awt.BorderLayout;
-
+import java.awt.*;
 import javax.swing.*;
  
 
@@ -19,6 +18,9 @@ public class GameFrame extends JFrame {
         
         // now that is visible we can tell it that we will use 2 buffers to do the repaint
         // befor being able to do that, the Canvas as to be visible
+        
+  
+        
         canvas.createBufferStrategy(2);
     }
     // just to start the application
@@ -27,7 +29,8 @@ public class GameFrame extends JFrame {
         // instance of our stuff
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new GameFrame();
+            		
+            		new GameFrame();
             }
         });
     }

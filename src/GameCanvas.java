@@ -7,6 +7,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.swing.*;
 import javax.swing.Timer;
  
 // OK this the class where we will draw
@@ -47,6 +49,9 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
 
     // my own paint method that repaint off line and switch the displayed buffer
     // according to the VBL
+    
+    double trueTime = 0;
+    
     public void myRepaint() {
         // wasting too much time doing the repaint... ignore it
         if(repaintInProgress)
@@ -59,6 +64,12 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
         graphics.setColor(backCol);
         graphics.fillRect(0, 0, size.width, size.height);
 
+        trueTime += .016;
+        
+        graphics.setColor(Color.WHITE);
+        //graphics.setFont(font);
+        graphics.drawString(""+(int)trueTime, 100, 100);
+        
         s.Height = size.height;
         s.Width = size.width;
         s.update();
@@ -85,11 +96,11 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
 
         if(graphics != null)
         	graphics.dispose();
-        // show next buffer
+        
         strategy.show();
-        // synchronized the blitter page shown
+        
         Toolkit.getDefaultToolkit().sync();
-        // ok I can be called again
+        
         repaintInProgress = false;
     }
 

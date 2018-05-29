@@ -5,14 +5,14 @@ public class Bullet {
 	
 	double startX, startY, currentX, currentY;
 	double deltaX, deltaY;
-	public double endDistance = 300;
-	double speed = 20;
+	public double endDistance = 110;
+	double speed = 80;
 	
 	public Bullet(double x, double y, double velocityX, double velocityY,double angle) {
 		// x and y should be the ship's current x and y
 		
-		deltaX = (2*Math.cos(angle)) + (0.5*velocityX);
-		deltaY = (2*Math.sin(angle)) + (0.5 *velocityY);
+		deltaX = (8*Math.cos(angle)) + (0.5*velocityX);
+		deltaY = (8*Math.sin(angle)) + (0.5 *velocityY);
 		
 		currentX = startX = x;
 		currentY = startY = y;
