@@ -1,5 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
+
+import org.omg.CORBA.portable.InputStream;
  
 
  
@@ -25,8 +27,9 @@ public class GameFrame extends JFrame {
     }
     // just to start the application
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         // instance of our stuff
+    	
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
             		

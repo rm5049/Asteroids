@@ -5,20 +5,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.*;
 import javax.swing.Timer;
+
+import org.omg.CORBA.portable.InputStream;
  
 // OK this the class where we will draw
 public class GameCanvas extends Canvas implements ActionListener, KeyListener{
-	int level = 1;
+	int level = 0;
 	int numAsteroids = 5;
 	Color backCol = Color.BLACK;
 	Ship s = new Ship();
 	ArrayList<Asteroid> asteroidList = new ArrayList<Asteroid>();
-	
 
     // a flag if repaint in progress (needed if our computation are to long)
     boolean repaintInProgress = false;
@@ -51,7 +53,8 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
     // according to the VBL
     
     double trueTime = 0;
-    
+    Font font1 = new Font("Verdana", Font.PLAIN,12);
+
     public void myRepaint() {
         // wasting too much time doing the repaint... ignore it
         if(repaintInProgress)
@@ -67,8 +70,10 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
         trueTime += .016;
         
         graphics.setColor(Color.WHITE);
-        //graphics.setFont(font);
-        graphics.drawString(""+(int)trueTime, 100, 100);
+        graphics.setFont(font1);
+        graphics.drawString("TIME ELAPSED: " +(int)trueTime, 855, 15);
+        graphics.drawString("LEVEL: " + level, 5, 15);
+        
         
         s.Height = size.height;
         s.Width = size.width;
