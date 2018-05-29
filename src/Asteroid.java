@@ -5,8 +5,8 @@ public class Asteroid implements Drawable{
 	
 	private String size;
 	private double angle;
-	private static int Height = 400;
-	private static int Width = 600;
+	public static int Height = 1000;
+	public static int Width = 1000;
 	private double positionX, positionY;
 	private int shape;
 	private double speed;

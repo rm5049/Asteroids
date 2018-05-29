@@ -12,7 +12,7 @@ public class GameFrame extends JFrame {
         GameCanvas canvas = new GameCanvas();
         this.add(canvas, BorderLayout.CENTER);
         // set it's size and make it visible
-        this.setSize(600, 400);
+        this.setSize(1000, 1000);
         this.setVisible(true);      
         
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

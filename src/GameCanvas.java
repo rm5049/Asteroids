@@ -69,8 +69,10 @@ public class GameCanvas extends Canvas implements ActionListener, KeyListener{
         	}
         }
         for(int x=0;x< asteroidList.size();x++) {
-        	asteroidList.get(x).update();
-        	asteroidList.get(x).draw(graphics);
+        		asteroidList.get(x).Height = size.height;
+        		asteroidList.get(x).Width = size.width;
+        		asteroidList.get(x).update();
+        		asteroidList.get(x).draw(graphics);
         }
         
         for(Bullet b: s.bulletList) {
