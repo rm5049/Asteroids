@@ -7,7 +7,7 @@ import javax.swing.*;
 public class GameFrame extends JFrame {
     GameFrame() {
         // frame description
-        super("Bouncing ball");
+        super("Asteroids");
         // our Canvas
         GameCanvas canvas = new GameCanvas();
         this.add(canvas, BorderLayout.CENTER);
@@ -31,5 +31,4 @@ public class GameFrame extends JFrame {
             }
         });
     }
-}    
-
+}   
