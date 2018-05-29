@@ -10,7 +10,7 @@ public class Ship implements Drawable{
 	private double angle = 0; 
 	private double angularVelocity = 0; 
 	private double power = .7; 
-	private double turnSpeed = .2; 
+	private double turnSpeed = .05; 
 	private double angularDrag=0.75; 
 	private static int Height = 400;
 	private static int Width = 600;
@@ -55,7 +55,7 @@ public class Ship implements Drawable{
 			 positionY-=Height; 
 		if(angle>(2*Math.PI)) 
 			 angle-=(2*Math.PI); 
-		if(accelerate&&velocityX<=3&&velocityY<=3) {
+		if(accelerate&&velocityX<=5&&velocityY<=5&&velocityX>=-5&&velocityY>=-5) {
 			velocityX += Math.cos(angle) * power;
 			velocityY += Math.sin(angle) * power;
 			}
@@ -78,6 +78,9 @@ public class Ship implements Drawable{
 		Left = temp;
 		return true;
 	}
+	public double getAngle() {
+		return angle;
+	}
 	
 	public double getPositionx() {
 		return positionX;
@@ -95,7 +98,7 @@ public class Ship implements Drawable{
 			 centerY[x]*Math.cos(angle)+
 			 positionY+.5); 
 			 }
-			if(true){ 
+			if(accelerate){ 
 				 for(int x=0;x<3;x++){
 				 CoordsflameX[x]=(int)(flamecenterX[x]*Math.cos(angle)-
 				 flamecenterY[x]*Math.sin(angle)+
@@ -104,11 +107,11 @@ public class Ship implements Drawable{
 				 flamecenterY[x]*Math.cos(angle)+
 				 positionY+.5);
 				 }
-				 g.setColor(Color.red); 
-				 g.fillPolygon(CoordsflameX,CoordsflameY,3); 
+				 g.setColor(Color.white); 
+				 g.drawPolygon(CoordsflameX,CoordsflameY,3); 
 				 }
 			g.setColor(Color.white); 
-			g.fillPolygon(CoordsX,CoordsY,4); 
+			g.drawPolygon(CoordsX,CoordsY,4); 
 	}
 
 
